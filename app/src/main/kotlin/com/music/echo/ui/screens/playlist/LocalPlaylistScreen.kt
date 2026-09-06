@@ -180,6 +180,13 @@ import androidx.compose.material3.rememberTooltipState
 import androidx.compose.foundation.background
 
 import androidx.compose.runtime.Composable
+
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.Alignment
+import echo.music.iad1tya.ui.component.LocalSongPickerDialog
+import echo.music.iad1tya.constants.MiniPlayerHeight
 import androidx.compose.foundation.background
 
 import androidx.compose.runtime.LaunchedEffect
@@ -224,7 +231,6 @@ import androidx.compose.foundation.background
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.foundation.background
 
-import androidx.compose.ui.Alignment
 import androidx.compose.foundation.background
 
 import androidx.compose.ui.Modifier
@@ -542,6 +548,7 @@ fun LocalPlaylistScreen(
     val snackbarHostState = remember { SnackbarHostState() }
 
     var isSearching by rememberSaveable { mutableStateOf(false) }
+    var showSongPicker by rememberSaveable { mutableStateOf(false) }
 
     var query by rememberSaveable(stateSaver = TextFieldValue.Saver) {
         mutableStateOf(TextFieldValue())

@@ -3812,7 +3812,11 @@ class MusicService :
     }
 
     private fun isNextItemGapless(): Boolean {
-        val current = player.currentMediaItem?.mediaMetadata ?: return false
+        val currentMediaItem = player.currentMediaItem ?: return false
+        if (currentMediaItem.mediaId.isLocalMediaId()) {
+            return false // Allow crossfade/automix for local media
+        }
+        val current = currentMediaItem.mediaMetadata
         val nextIndex = player.nextMediaItemIndex
         if (nextIndex == C.INDEX_UNSET) return false
         val next = player.getMediaItemAt(nextIndex).mediaMetadata
